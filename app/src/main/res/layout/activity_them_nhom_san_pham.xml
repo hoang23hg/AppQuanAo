@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:padding="16dp"
-    android:background="#AEA726"
+    android:background="#8E8E89"
     android:orientation="vertical">
     <ImageButton
         android:id="@+id/imgback"
@@ -82,7 +82,9 @@
                     android:backgroundTint="#2AD189"
                     android:layout_marginLeft="30dp"
                     android:id="@+id/btnAddImg"
-                    android:layout_height="50dp"></Button>
+                    android:layout_height="50dp">
+
+                </Button>
             </LinearLayout>
 
             <Button

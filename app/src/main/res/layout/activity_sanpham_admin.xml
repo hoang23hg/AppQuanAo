@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:backgroundTint="#B8B519"
+        android:backgroundTint="#8E8E89"
         android:layout_alignParentTop="true"
         android:background="#F6F3EF"
 
@@ -19,7 +19,6 @@
             android:backgroundTint="#B8B519"
             android:layout_height="60dp">
             <TextView
-
                 android:layout_marginLeft="1dp"
                 android:layout_weight="9"
                 android:gravity="center"
@@ -27,12 +26,13 @@
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_gravity="center"
-
                 android:text="DANH SÁCH  SẢN PHẨM"
                 android:textColor="#FFFFFF"
                 android:src="@drawable/logo"
                 android:layout_width="80dp"
-                android:layout_height="80dp"></TextView>
+                android:layout_height="80dp">
+
+            </TextView>
         </LinearLayout>
 
     </LinearLayout>
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="9sp"
                 android:textColor="#000000"
-                android:text="Nhóm SP"
+                android:text="Danh mục"
                 android:gravity="center" />
         </LinearLayout>
 

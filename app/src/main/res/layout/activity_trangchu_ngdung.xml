@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:backgroundTint="#B8B519"
-
+        android:backgroundTint="#D1D1C8"
         android:layout_alignParentTop="true"
         android:background="#F6F3EF"
         android:padding="1dp">
@@ -18,13 +17,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="60dp"
+            >
             <ImageView
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:id="@+id/logo"
-                android:src="@drawable/logo"
+                android:src="@drawable/logo_app_1"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
@@ -35,18 +35,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="9"
-
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingTop="20dp"
-                android:text="SHOP CLOTHERS"
+                android:text="Hôm Nay Mặc Gì"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-               android:id="@+id/tendn"
-
+                android:id="@+id/tendn"
                 />
 
 
@@ -70,8 +68,9 @@
             android:maxLines="1"
             android:inputType="text"
             android:ellipsize="end"
-android:layout_marginBottom="10dp"
-            android:layout_weight="1" />
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_search"/>
     </LinearLayout>
 
     <!-- Nội dung ứng dụng -->
@@ -85,21 +84,16 @@ android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
-
             >
-
-<ImageView
-    android:layout_width="match_parent"
-    android:background="@drawable/img_3"
-
-    android:layout_height="200dp">
-
-</ImageView>
-     <TextView
+            <ImageView
+                android:layout_width="match_parent"
+                android:background="@drawable/img_3"
+                android:layout_height="200dp">
+            </ImageView>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-              android:layout_marginLeft="10dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

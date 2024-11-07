@@ -81,13 +81,13 @@
             android:name=".Nhomsanpham_admin_Actvity"
             android:exported="false" />
         <activity
-            android:name=".ThemNhomSanPham_Activity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Login_Activity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ThemNhomSanPham_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

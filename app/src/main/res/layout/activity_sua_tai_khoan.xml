@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:padding="16dp"
-    android:background="#35C6FF"
+    android:background="#8E8E89"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView

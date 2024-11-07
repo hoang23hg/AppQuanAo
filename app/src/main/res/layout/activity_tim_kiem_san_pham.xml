@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:backgroundTint="#B8B519"
-
+        android:backgroundTint="#8E8E89"
         android:layout_alignParentTop="true"
         android:background="#F6F3EF"
         android:padding="1dp">
@@ -35,10 +34,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="9"
-
                 android:fontFamily="sans-serif-condensed-light"
                 android:paddingTop="20dp"
-                android:text="SHOP CLOTHERS"
+                android:text="Hôm Nay Mặc Gì"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
                 android:textStyle="bold" />

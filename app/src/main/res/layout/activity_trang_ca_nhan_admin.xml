@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:backgroundTint="#D1D804"
+        android:backgroundTint="#8E8E89"
         android:layout_marginBottom="10dp"
         android:layout_alignParentTop="true"
         android:background="#F6F3EF"
@@ -23,7 +23,6 @@
 
             android:layout_height="60dp">
             <TextView
-
                 android:layout_marginLeft="0dp"
                 android:layout_weight="9"
                 android:fontFamily="sans-serif-condensed-light"
@@ -31,8 +30,6 @@
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:paddingTop="0dp"
-
-
                 android:text="TÀI KHOẢN QUẢN TRỊ"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
@@ -142,8 +139,6 @@
                 android:textSize="18dp"
                 android:text="Tổng đài CSKH 19002325"
                 android:drawablePadding="8dp"
-
-
                 android:padding="8dp"
                 android:layout_marginBottom="202dp"
                 android:drawableRight="@drawable/muitenphai"
@@ -152,14 +147,15 @@
                 android:layout_marginTop="1dp"/>
 
             <Button
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/btndangxuat"
                 android:text="Đăng xuất"
                 android:textSize="18sp"
                 android:layout_marginTop="2dp"
-                android:backgroundTint="#1AD1FF"
+                android:backgroundTint="#1E88E5"
+
                 />
 
         </LinearLayout>

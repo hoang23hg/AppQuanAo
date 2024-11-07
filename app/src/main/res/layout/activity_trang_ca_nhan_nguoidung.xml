@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:layout_marginBottom="1dp">
-
     <LinearLayout
         android:id="@+id/bo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:backgroundTint="#D1D804"
+        android:backgroundTint="#8E8E89"
         android:layout_marginBottom="10dp"
         android:layout_alignParentTop="true"
         android:background="#F6F3EF"
@@ -20,10 +18,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-
             android:layout_height="60dp">
-                  <TextView
-
+            <TextView
                 android:layout_marginLeft="0dp"
                 android:layout_weight="9"
                 android:fontFamily="sans-serif-condensed-light"
@@ -31,13 +27,12 @@
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:paddingTop="0dp"
-
-
                 android:text="TÀI KHOẢN KHÁCH HÀNG"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:layout_width="80dp"
-                android:layout_height="65dp" />  </LinearLayout>
+                android:layout_height="65dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -152,14 +147,14 @@
                 android:layout_marginTop="1dp"/>
 
             <Button
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/btndangxuat"
                 android:text="Đăng xuất"
                 android:textSize="18sp"
                 android:layout_marginTop="2dp"
-                android:backgroundTint="#1AD1FF"
+                android:backgroundTint="#1E88E5"
                 />
 
         </LinearLayout>

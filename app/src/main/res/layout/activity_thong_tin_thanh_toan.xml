@@ -3,8 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-
-    android:background="#FFD400"
+    android:background="#8E8E89"
     android:orientation="vertical">
     <ImageButton
         android:id="@+id/imgback"
