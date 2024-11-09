@@ -3,6 +3,8 @@ package com.example.tuan17;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -17,6 +19,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.tuan17.Adapter.NhomSanPhamAdapter;
+import com.example.tuan17.Adapter.SanPhamAdapter;
+import com.example.tuan17.Db.Database;
+import com.example.tuan17.Model.NhomSanPham;
+import com.example.tuan17.Model.SanPham;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -34,21 +43,18 @@ public class TrangchuNgdung_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangchu_ngdung);
 
-        ImageButton btntimkiem = findViewById(R.id.btntimkiem);
-        ImageButton btntrangchu = findViewById(R.id.btntrangchu);
-        ImageButton btncard = findViewById(R.id.btncart);
-        ImageButton btndonhang = findViewById(R.id.btndonhang);
-        ImageButton btncanhan = findViewById(R.id.btncanhan);
+
         EditText timkiem = findViewById(R.id.timkiem);
         TextView textTendn = findViewById(R.id.tendn); // TextView hiển thị tên đăng nhập
         grv2 = findViewById(R.id.grv2);
         grv1 = findViewById(R.id.grv1);
 
-        // Lấy tên đăng nhập từ SharedPreferences
+////        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+////        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String tendn = sharedPreferences.getString("tendn", null);
-
-        // Kiểm tra tên đăng nhập
+//
+//        // Kiểm tra tên đăng nhập
         if (tendn != null) {
             textTendn.setText(tendn);
         } else {
@@ -72,53 +78,45 @@ public class TrangchuNgdung_Activity extends AppCompatActivity {
             }
         });
 
-        // Gửi tên đăng nhập qua Intent trong sự kiện click
-        btntrangchu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangchuNgdung_Activity.this, DonHang_User_Activity.class);
-                // Gửi tên đăng nhập qua Intent
-                intent.putExtra("tendn", tendn); // sử dụng biến tendn đã được xác nhận
-                startActivity(intent);
-            }
-        });
-        btntimkiem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangchuNgdung_Activity.this, TimKiemSanPham_Activity.class);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.nav_home:
+//                    startActivity(new Intent(getApplicationContext(), TrangchuNgdung_Activity.class));
+//                    return true;
+//
+//                case R.id.nav_search:
+//                    startActivity(new Intent(getApplicationContext(), TimKiemSanPham_Activity.class));
+//                    return true;
+//
+//                case R.id.nav_cart:
+//                    boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+//                    if (!isLoggedIn) {
+//                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+//                    } else {
+//                        startActivity(new Intent(getApplicationContext(), GioHang_Activity.class));
+//                    }
+//                    return true;
+//
+//                case R.id.nav_order:
+//                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+//                        Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
+//                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+//                        startActivity(intent);
+//                    } else {
+//                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+//                    }
+//                    return true;
+//
+//                case R.id.nav_profile:
+//                    Intent intent = new Intent(getApplicationContext(), TrangCaNhan_nguoidung_Activity.class);
+//                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+//                    startActivity(intent);
+//                    return true;
+//            }
+//            return false;
+//        });
 
-                // Gửi tên đăng nhập qua Intent
-                intent.putExtra("tendn", tendn); // Sử dụng biến tendn đã được lấy từ SharedPreferences
 
-                startActivity(intent);
-            }
-        });
-
-        btndonhang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangchuNgdung_Activity.this, DonHang_User_Activity.class);
-                intent.putExtra("tendn", tendn); // Gửi tên đăng nhập
-                startActivity(intent);
-            }
-        });
-        btncard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangchuNgdung_Activity.this, GioHang_Activity.class);
-                intent.putExtra("tendn", tendn); // Gửi tên đăng nhập
-                startActivity(intent);
-            }
-        });
-        btncanhan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangchuNgdung_Activity.this, TrangCaNhan_nguoidung_Activity.class);
-                intent.putExtra("tendn", tendn); // Gửi tên đăng nhập
-                startActivity(intent);
-            }
-        });
-        // Các sự kiện khác
         timkiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

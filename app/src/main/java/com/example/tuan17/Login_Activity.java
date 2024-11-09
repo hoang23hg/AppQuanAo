@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tuan17.Db.Database;
+
 import org.w3c.dom.Text;
 
 public class Login_Activity extends AppCompatActivity {

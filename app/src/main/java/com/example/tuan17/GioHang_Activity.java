@@ -1,6 +1,8 @@
 package com.example.tuan17;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +16,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.tuan17.Adapter.GioHangAdapter;
+import com.example.tuan17.Db.Database;
+import com.example.tuan17.Model.GioHang;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -30,18 +37,14 @@ public class GioHang_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gio_hang);
-        ImageButton btntimkiem = findViewById(R.id.btntimkiem);
-        ImageButton btntrangchu = findViewById(R.id.btntrangchu);
-        ImageButton btncard = findViewById(R.id.btncart);
-        ImageButton btndonhang = findViewById(R.id.btndonhang);
-        ImageButton btncanhan = findViewById(R.id.btncanhan);
         thanhtoan = findViewById(R.id.btnthanhtoan);
         listView = findViewById(R.id.listtk);
         TextView textTendn = findViewById(R.id.tendn);
-
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         // Lấy tendn từ SharedPreferences
-        SharedPreferences sharedPre = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String tendn = sharedPre.getString("tendn", null);
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String tendn = sharedPreferences.getString("tendn", null);
 
         if (tendn != null) {
             textTendn.setText(tendn);
@@ -75,83 +78,44 @@ public class GioHang_Activity extends AppCompatActivity {
 
         // Xử lý sự kiện click thanh toán
         thanhtoan.setOnClickListener(v -> showPaymentDialog());
-        btncard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kiểm tra trạng thái đăng nhập của ng dùng
-                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
-                if (!isLoggedIn) {
-                    // Chưa đăng nhập, chuyển đến trang login
-                    Intent intent = new Intent(getApplicationContext(),Login_Activity.class);
-                    startActivity(intent);
-                } else {
-                    // Đã đăng nhập, chuyển đến trang 2
-                    Intent intent = new Intent(getApplicationContext(), GioHang_Activity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-        btntrangchu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Đã đăng nhập, chuyển đến trang đơn hàng
-                Intent intent = new Intent(getApplicationContext(), TrangchuNgdung_Activity.class);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    startActivity(new Intent(getApplicationContext(), TrangchuNgdung_Activity.class));
+                    return true;
 
-                startActivity(intent);
-            }
-        });
-        btndonhang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Kiểm tra trạng thái đăng nhập của người dùng
-                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+                case R.id.nav_search:
+                    startActivity(new Intent(getApplicationContext(), TimKiemSanPham_Activity.class));
+                    return true;
 
-                if (isLoggedIn) {
-                    // Đã đăng nhập, chuyển đến trang đơn hàng
-                    Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
+                case R.id.nav_cart:
+                    boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+                    if (!isLoggedIn) {
+                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), GioHang_Activity.class));
+                    }
+                    return true;
 
-                    // Truyền tendn qua Intent
-                    intent.putExtra("tendn", tendn);  // Thêm dòng này để truyền tendn
+                case R.id.nav_order:
+                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+                        Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
+                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                        startActivity(intent);
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+                    }
+                    return true;
 
-                    startActivity(intent);
-                } else {
-                    // Chưa đăng nhập, chuyển đến trang login
-                    Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
-                    startActivity(intent);
-                }
-            }
-
-        });
-        btncanhan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kiểm tra trạng thái đăng nhập của ng dùng
-                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-                if (!isLoggedIn) {
-                    // Chưa đăng nhập, chuyển đến trang login
-                    Intent intent = new Intent(getApplicationContext(),Login_Activity.class);
-                    startActivity(intent);
-                } else {
-                    // Đã đăng nhập, chuyển đến trang 2
+                case R.id.nav_profile:
                     Intent intent = new Intent(getApplicationContext(), TrangCaNhan_nguoidung_Activity.class);
+                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
                     startActivity(intent);
-                }
+                    return true;
             }
+            return false;
         });
-
-        btntimkiem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a=new Intent(getApplicationContext(),TimKiemSanPham_Activity.class);
-                startActivity(a);
-            }
-        });
-
     }
 
     private void showPaymentDialog() {

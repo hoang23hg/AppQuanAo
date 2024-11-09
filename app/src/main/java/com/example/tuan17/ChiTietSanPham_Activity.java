@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tuan17.Model.ChiTietSanPham;
+
 public class ChiTietSanPham_Activity extends AppCompatActivity {
 
      String masp, tendn;
@@ -100,7 +102,7 @@ public class ChiTietSanPham_Activity extends AppCompatActivity {
                 startActivity(loginIntent);
             } else {
                 gioHangManager.addItem(chiTietSanPham); // Gọi phương thức addItem
-                Intent intent1=new Intent(ChiTietSanPham_Activity.this,GioHang_Activity.class);
+                Intent intent1=new Intent(ChiTietSanPham_Activity.this, GioHangFragment.class);
                 startActivity(intent1);
             }
         });
@@ -139,7 +141,7 @@ btntimkiem.setOnClickListener(new View.OnClickListener() {
             Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(getApplicationContext(), GioHang_Activity.class);
+            Intent intent = new Intent(getApplicationContext(), GioHangFragment.class);
             startActivity(intent);
         }
     }

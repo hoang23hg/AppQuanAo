@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/bo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:backgroundTint="#8E8E89"
+        android:background="#F6F3EF"
+        android:padding="1dp"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:backgroundTint="#B8B519">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="DANH SÁCH CÁC ĐƠN HÀNG"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:id="@+id/listViewChiTiet"
+        android:layout_below="@+id/bo"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="match_parent">
+
+    </ListView>
+<!--        android:layout_above="@id/bottom_navigation" />-->
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="#FFFFFF"-->
+<!--        app:menu="@menu/bottom_menu_admin"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:itemIconTint="@color/bottom_nav_color"-->
+<!--        app:itemTextColor="@color/bottom_nav_text_color" />-->
+
+</RelativeLayout>

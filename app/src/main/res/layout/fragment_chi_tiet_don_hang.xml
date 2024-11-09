@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/bo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F6F3EF"
+        android:padding="1dp"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#D0C037">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="1dp"
+                android:layout_weight="9"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="sans-serif-condensed-light"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="@string/chi_tiet_don_hang"
+                android:textColor="#FFFFFF"
+                android:src="@drawable/logo"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/listtk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/bo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/bottomToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:padding="1dp"
+        android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>

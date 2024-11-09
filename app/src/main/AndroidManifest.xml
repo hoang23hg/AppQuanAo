@@ -15,10 +15,10 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ChiTietDonHang_Admin_Activity"
+            android:name=".TrangchuNgdung_Activity"
             android:exported="false" />
         <activity
-            android:name=".TrangCaNhan_admin_Activity"
+            android:name=".Sanpham_admin_Activity"
             android:exported="false" />
         <activity
             android:name=".DonHang_admin_Activity"
@@ -39,16 +39,13 @@
             android:name=".DonHang_User_Activity"
             android:exported="false" />
         <activity
-            android:name=".ChiTietDonHang_Activity"
-            android:exported="false" />
-        <activity
             android:name=".GioHang_Activity"
             android:exported="false" />
         <activity
             android:name=".ChiTietSanPham_Activity"
             android:exported="false" />
         <activity
-            android:name=".TrangchuAdmin_Activity"
+            android:name=".TrangCaNhan_admin_Activity"
             android:exported="false" />
         <activity
             android:name=".DangKiTaiKhoan_Activity"
@@ -60,7 +57,7 @@
             android:name=".ThemTaiKhoan_Activity"
             android:exported="false" />
         <activity
-            android:name=".Sanpham_admin_Activity"
+            android:name=".TrangchuAdmin_Activity"
             android:exported="false" />
         <activity
             android:name=".SuaSanPham_Activity"
@@ -75,7 +72,7 @@
             android:name=".SuaNhomsanpham_Activity"
             android:exported="false" />
         <activity
-            android:name=".TrangchuNgdung_Activity"
+            android:name=".ThemNhomSanPham_Activity"
             android:exported="false" />
         <activity
             android:name=".Nhomsanpham_admin_Actvity"
@@ -87,7 +84,7 @@
             android:name=".Login_Activity"
             android:exported="false" />
         <activity
-            android:name=".ThemNhomSanPham_Activity"
+            android:name=".MainActivity2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

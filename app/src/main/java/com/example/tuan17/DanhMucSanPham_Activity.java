@@ -8,6 +8,10 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.tuan17.Adapter.SanPham_DanhMuc_Adapter;
+import com.example.tuan17.DbHelper.DatabaseHelper;
+import com.example.tuan17.Model.SanPham;
+
 import java.util.ArrayList; // Import ArrayList
 import java.util.List;
 

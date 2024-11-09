@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F3EF"
+        android:padding="16dp"
+        android:gravity="center"
+        android:backgroundTint="#8E8E89"
+        android:text="GIỎ HÀNG"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:id="@+id/tieude"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"/>
+    <ImageView
+
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/back"
+        android:src="@drawable/ql"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+    </ImageView>
+
+    <ListView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:id="@+id/listtk"
+        android:layout_below="@+id/tieude"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:text="Tổng:"
+            android:textColor="#FF4F4F"
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tongtien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0000000"
+            android:textColor="#FF4F4F"
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="đ"
+            android:textColor="#FF4F4F"
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/btnthanhtoan"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="#FF0505"
+            android:text="Thanh Toán"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold">
+
+        </Button>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/masp"
+        android:textSize="1sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/manhomsanpham"
+        android:textSize="1sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/tendn"
+
+        />
+</RelativeLayout>

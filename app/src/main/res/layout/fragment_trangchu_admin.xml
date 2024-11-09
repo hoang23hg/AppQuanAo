@@ -1,0 +1,159 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E8EADF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <!-- Đoạn giao diện đầu trang -->
+    <LinearLayout
+        android:id="@+id/bo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:backgroundTint="#D1D1C8"
+        android:layout_alignParentTop="true"
+        android:background="#F6F3EF"
+        android:padding="1dp">
+
+        <!-- Khối header -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:id="@+id/logo"
+                android:src="@drawable/logo_app_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:focusableInTouchMode="false"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_weight="9"
+                android:fontFamily="sans-serif-condensed-light"
+                android:paddingTop="20dp"
+                android:text="HÔM NAY MẶC GÌ XIN CHÀO ADMIN"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Thanh tìm kiếm -->
+        <EditText
+            android:id="@+id/timkiem"
+            android:paddingRight="10dp"
+            android:textColorHint="#aaa"
+            android:hint="Search..."
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:drawableRight="@drawable/tk"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/thanhtimkiem"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:scrollHorizontally="true"
+            android:maxLines="1"
+            android:inputType="text"
+            android:ellipsize="end"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- Phần nội dung -->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bo">
+<!--        android:layout_above="@id/bottom_navigation">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Ảnh banner -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:background="@drawable/img_3"
+                android:layout_height="200dp"/>
+
+            <!-- Tiêu đề danh mục -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Danh Mục"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- GridView cho danh mục -->
+            <GridView
+                android:id="@+id/grv2"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginRight="10dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="5"
+                android:columnCount="2"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="5dp" />
+
+            <!-- Tiêu đề sản phẩm đề xuất -->
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingBottom="10dp"
+                android:text="Đề xuất sản phẩm"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- GridView cho sản phẩm đề xuất -->
+            <GridView
+                android:id="@+id/grv1"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="2"
+                android:columnCount="4"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+<!--    &lt;!&ndash; Bottom navigation &ndash;&gt;-->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="#FFFFFF"-->
+<!--        app:menu="@menu/bottom_menu_admin"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:itemIconTint="@color/bottom_nav_color"-->
+<!--        app:itemTextColor="@color/bottom_nav_text_color"/>-->
+
+
+</RelativeLayout>

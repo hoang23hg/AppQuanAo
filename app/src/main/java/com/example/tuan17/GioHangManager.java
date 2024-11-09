@@ -1,5 +1,8 @@
 package com.example.tuan17;
 
+import com.example.tuan17.Model.ChiTietSanPham;
+import com.example.tuan17.Model.GioHang;
+
 import java.util.ArrayList;
 import java.util.List;
 

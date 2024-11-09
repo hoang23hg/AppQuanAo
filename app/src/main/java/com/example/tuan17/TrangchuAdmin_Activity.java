@@ -2,6 +2,7 @@ package com.example.tuan17;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,7 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.tuan17.Adapter.NhomSanPham_trangChuadmin_Adapter;
+import com.example.tuan17.Adapter.SanPham_TrangChuAdmin_Adapter;
+import com.example.tuan17.Db.Database;
+import com.example.tuan17.Model.NhomSanPham;
+import com.example.tuan17.Model.SanPham;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -30,67 +39,42 @@ public class TrangchuAdmin_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangchu_admin);
 
-        ImageButton btncanhan=findViewById(R.id.btncanhan);
-        btncanhan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kiểm tra trạng thái đăng nhập của ng dùng
-                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String tendn = sharedPreferences.getString("tendn", null);
 
-                if (!isLoggedIn) {
-                    // Chưa đăng nhập, chuyển đến trang login
-                    Intent intent = new Intent(getApplicationContext(),Login_Activity.class);
-                    startActivity(intent);
-                } else {
-                    // Đã đăng nhập, chuyển đến trang 2
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_homeadmin:
+                    startActivity(new Intent(getApplicationContext(), TrangchuAdmin_Activity.class));
+                    return true;
+
+                case R.id.nav_dm:
+                    startActivity(new Intent(getApplicationContext(), Nhomsanpham_admin_Actvity.class));
+                    return true;
+
+                case R.id.nav_sp:
+                    startActivity(new Intent(getApplicationContext(), Sanpham_admin_Activity.class));
+                    return true;
+                case R.id.nav_orderadmin:
+                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+                        Intent intent = new Intent(getApplicationContext(), DonHang_admin_Activity.class);
+                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                        startActivity(intent);
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+                    }
+                    return true;
+
+                case R.id.nav_profileadmin:
                     Intent intent = new Intent(getApplicationContext(), TrangCaNhan_admin_Activity.class);
+                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
                     startActivity(intent);
-                }
+                    return true;
             }
-        });
-        ImageButton btndonhang=findViewById(R.id.btndonhang);
-        btndonhang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //kiểm tra trạng thái đăng nhập của ng dùng
-                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-                if (!isLoggedIn) {
-                    // Chưa đăng nhập, chuyển đến trang login
-                    Intent intent = new Intent(getApplicationContext(),Login_Activity.class);
-                    startActivity(intent);
-                } else {
-                    // Đã đăng nhập, chuyển đến trang 2
-                    Intent intent = new Intent(getApplicationContext(), DonHang_admin_Activity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-        ImageButton btnsanpham    =findViewById(R.id.btnsanpham);
-        btnsanpham.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a=new Intent(getApplicationContext(),Sanpham_admin_Activity.class);
-                startActivity(a);
-            }
-        });
-        ImageButton btnnhomsp   =findViewById(R.id.btnnhomsp);
-        btnnhomsp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a=new Intent(getApplicationContext(),Nhomsanpham_admin_Actvity.class);
-                startActivity(a);
-            }
-        });
-        ImageButton btntaikhoan    =findViewById(R.id.btntaikhoan);
-        btntaikhoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a=new Intent(getApplicationContext(),Taikhoan_admin_Activity.class);
-                startActivity(a);
-            }
+            return false;
         });
         grv2=findViewById(R.id.grv2);
         grv1=findViewById(R.id.grv1);
