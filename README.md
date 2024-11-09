@@ -15,3 +15,4 @@
 
 -> clone code về
 git clone https://github.com/hoang23hg/AppHomNayMacGi.git
+-> clone code nhánh phụ git clone -b <tên-nhánh> <url-repository>
