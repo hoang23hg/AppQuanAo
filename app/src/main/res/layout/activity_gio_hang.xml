@@ -1,123 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-
+    <!-- Tiêu đề -->
     <TextView
+        android:id="@+id/tieude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F6F3EF"
+        android:background="#8E8E89"
         android:padding="16dp"
         android:gravity="center"
-        android:backgroundTint="#8E8E89"
         android:text="GIỎ HÀNG"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:id="@+id/tieude"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"/>
+        android:textStyle="bold" />
+
+    <!-- Nút quay lại -->
     <ImageView
-
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
         android:id="@+id/back"
-        android:src="@drawable/ql"
         android:layout_width="40dp"
-        android:layout_height="40dp">
-
-    </ImageView>
-
-    <ListView
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:id="@+id/listtk"
-        android:layout_below="@+id/tieude"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="70dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="match_parent"
-        >
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ql"
+        android:contentDescription="Back button" />
 
-    </ListView>
+    <!-- Danh sách sản phẩm -->
+    <ListView
+        android:id="@+id/listtk"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp" />
 
+    <!-- Layout chứa tổng tiền và nút Thanh Toán -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/tongTienLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-   <TextView
-       android:layout_width="wrap_content"
-       android:text="Tổng:"
-       android:textColor="#FF4F4F"
-       android:textStyle="normal"
-       android:layout_marginLeft="60dp"
-       android:textSize="20dp"
-       android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center">
 
-   </TextView>
         <TextView
             android:layout_width="wrap_content"
-            android:text="0000000"
+            android:layout_height="wrap_content"
+            android:text="Tổng:"
+            android:textColor="#FF4F4F"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/tongtien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="0000000"
             android:textColor="#FF4F4F"
-            android:textStyle="normal"
-            android:textSize="20dp"
-            android:layout_height="wrap_content">
+            android:textSize="20sp" />
 
-        </TextView>
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="đ"
-
             android:textColor="#FF4F4F"
-            android:textStyle="normal"
-            android:textSize="20dp"
-            android:layout_height="wrap_content">
-
-        </TextView>
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnthanhtoan"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:layout_marginLeft="20dp"
             android:layout_width="130dp"
-            android:backgroundTint="#FF0505"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
             android:text="Thanh Toán"
-            android:layout_height="50dp">
-
-        </Button>
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#FF0505" />
     </LinearLayout>
-
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:background="#FFFFFF"-->
-<!--        app:menu="@menu/bottom_menu"-->
-<!--        app:labelVisibilityMode="labeled"-->
-<!--        app:itemIconTint="@color/bottom_nav_color"-->
-<!--        app:itemTextColor="@color/bottom_nav_text_color"/>-->
-    <TextView
+    <View
         android:id="@+id/masp"
-        android:textSize="1sp"
         android:layout_width="0dp"
         android:layout_height="0dp" />
 
-    <TextView
+    <View
         android:id="@+id/manhomsanpham"
-        android:textSize="1sp"
         android:layout_width="0dp"
         android:layout_height="0dp" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/tendn"
 
-        />
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tendn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_text_color"/>
+
+
+</LinearLayout>

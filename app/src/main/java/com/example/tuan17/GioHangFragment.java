@@ -40,16 +40,19 @@ public class GioHangFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_gio_hang, container, false);
 
+        // Ánh xạ các view
         thanhtoan = rootView.findViewById(R.id.btnthanhtoan);
         listView = rootView.findViewById(R.id.listtk);
         TextView textTendn = rootView.findViewById(R.id.tendn);
 
+        // Lấy tên đăng nhập từ SharedPreferences
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getActivity().MODE_PRIVATE);
         String tendn = sharedPreferences.getString("tendn", null);
 
         if (tendn != null) {
             textTendn.setText(tendn);
         } else {
+            Toast.makeText(getActivity(), "Vui lòng đăng nhập!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getActivity(), Login_Activity.class));
             getActivity().finish();
             return rootView;
@@ -72,11 +75,18 @@ public class GioHangFragment extends Fragment {
         adapter = new GioHangAdapter(getActivity(), gioHangList, txtTongTien);
         listView.setAdapter(adapter);
 
-        txtTongTien.setText(String.valueOf(gioHangManager.getTongTien()));
+        // Cập nhật tổng tiền
+        updateTongTien();
 
         thanhtoan.setOnClickListener(v -> showPaymentDialog());
 
         return rootView;
+    }
+
+    private void updateTongTien() {
+        // Kiểm tra nếu tổng tiền hợp lệ trước khi hiển thị
+        float tongTien = gioHangManager.getTongTien();
+        txtTongTien.setText(String.format("%,.2f", tongTien));  // Định dạng tổng tiền
     }
 
     private void showPaymentDialog() {
@@ -104,7 +114,7 @@ public class GioHangFragment extends Fragment {
             } else {
                 float tongThanhToan;
                 try {
-                    tongThanhToan = Float.parseFloat(tongTien.replace(",", ""));
+                    tongThanhToan = Float.parseFloat(tongTien.replace(",", "")); // Loại bỏ dấu phẩy nếu có
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), "Có lỗi xảy ra với tổng tiền!", Toast.LENGTH_SHORT).show();
                     return;
@@ -124,11 +134,11 @@ public class GioHangFragment extends Fragment {
 
                         Toast.makeText(getActivity(), "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
                         gioHangManager.clearGioHang();
-                        txtTongTien.setText("0");
+                        updateTongTien(); // Cập nhật lại tổng tiền
 
                         adapter.notifyDataSetChanged();
 
-                        // Sử dụng FragmentTransaction để chuyển về TrangchuNgdungFragment
+                        // Chuyển về Trang chủ
                         FragmentManager fragmentManager = getParentFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.fragment_container, new TrangchuNgdungFragment());
