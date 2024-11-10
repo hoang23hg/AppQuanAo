@@ -1,5 +1,6 @@
 package com.example.tuan17.DbHelper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -207,5 +208,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return sanPhamList; // Trả về danh sách sản phẩm tìm kiếm
     }
+
 }
 

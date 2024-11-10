@@ -13,6 +13,7 @@ import com.example.tuan17.TrangCaNhanNguoiDungFragment;
 import com.example.tuan17.TrangchuNgdungFragment;
 
 public class ViewPagerAdapterUser extends FragmentStateAdapter {
+
     public ViewPagerAdapterUser(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }

@@ -35,6 +35,7 @@ public class Login_Activity extends AppCompatActivity {
         EditText mk = findViewById(R.id.mk);
         TextView dangki = findViewById(R.id.dangki);
         TextView qmk = findViewById(R.id.qmk);
+
         qmk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +43,7 @@ public class Login_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         database = new Database(this, "banhang.db", null, 1);
 
         // Chuyển đến activity đăng ký tài khoản
@@ -58,25 +60,23 @@ public class Login_Activity extends AppCompatActivity {
             if (validateLogin(username, password)) {
                 // Gán tên đăng nhập cho biến tendn
                 tendn = username;
-
+                String quyen = getUserQuyen(username);
                 SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("tendn", tendn); // Lưu tên đăng nhập
+                editor.putString("userRole", quyen); // Lưu quyền người dùng
                 editor.putBoolean("isLoggedIn", true);  // Đánh dấu người dùng đã đăng nhập
                 editor.apply(); // Lưu các thay đổi
 
                 // Khởi động Timer
                 startAutoLogoutTimer();
-
-                // Chuyển đến activity phù hợp theo quyền
-                String quyen = getUserQuyen(username);
                 Intent intent;
 
-                if (quyen.equals("admin")) {
-                    intent = new Intent(Login_Activity.this, TrangchuAdmin_Activity.class);
+                if ("admin".equals(quyen)) {
+                    intent = new Intent(Login_Activity.this, MainActivity2.class);
                     Toast.makeText(this, "Đăng nhập với quyền Admin", Toast.LENGTH_SHORT).show();
-                } else if (quyen.equals("user")) {
-                    intent = new Intent(Login_Activity.this, TrangchuNgdung_Activity.class);
+                } else if ("user".equals(quyen)) {
+                    intent = new Intent(Login_Activity.this, MainActivity2.class);
                     intent.putExtra("tendn", tendn); // Truyền tên đăng nhập
                     Toast.makeText(this, "Đăng nhập với quyền User", Toast.LENGTH_SHORT).show();
                 } else {

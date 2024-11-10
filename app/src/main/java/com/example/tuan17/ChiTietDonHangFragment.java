@@ -35,12 +35,6 @@ public class ChiTietDonHangFragment extends Fragment {
         // Inflate layout cho Fragment
         View view = inflater.inflate(R.layout.fragment_chi_tiet_don_hang, container, false);
 
-        // Khởi tạo các thành phần giao diện
-        ImageButton btntimkiem = view.findViewById(R.id.btntimkiem);
-        ImageButton btntrangchu = view.findViewById(R.id.btntrangchu);
-        ImageButton btncard = view.findViewById(R.id.btncart);
-        ImageButton btndonhang = view.findViewById(R.id.btndonhang);
-        ImageButton btncanhan = view.findViewById(R.id.btncanhan);
 
         dbdata = new DatabaseHelper(getContext());
         database = new Database(getContext(), "banhang.db", null, 1);
@@ -79,12 +73,7 @@ public class ChiTietDonHangFragment extends Fragment {
             }
         }
 
-        // Cài đặt các sự kiện cho ImageButton
-        btncard.setOnClickListener(view1 -> checkLoginAndNavigate(GioHang_Activity.class));
-        btntrangchu.setOnClickListener(view1 -> navigateToActivity(TrangchuNgdung_Activity.class));
-        btndonhang.setOnClickListener(view1 -> navigateToActivity(DonHang_User_Activity.class));
-        btncanhan.setOnClickListener(view1 -> checkLoginAndNavigate(TrangCaNhan_nguoidung_Activity.class));
-        btntimkiem.setOnClickListener(view1 -> navigateToActivity(TimKiemSanPham_Activity.class));
+
 
         return view;
     }

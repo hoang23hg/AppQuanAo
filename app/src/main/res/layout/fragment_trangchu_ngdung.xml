@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:ignore="NamespaceTypo">
 
+
     <LinearLayout
         android:id="@+id/bo"
         android:layout_width="match_parent"
@@ -152,6 +153,7 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/bottom_navigation"-->

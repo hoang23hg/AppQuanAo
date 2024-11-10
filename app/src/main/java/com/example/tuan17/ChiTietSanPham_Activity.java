@@ -18,7 +18,7 @@ import com.example.tuan17.Model.ChiTietSanPham;
 public class ChiTietSanPham_Activity extends AppCompatActivity {
 
      String masp, tendn;
-  Button btndathang, btnaddcart;
+    Button btndathang, btnaddcart;
     private ChiTietSanPham chiTietSanPham;
     private GioHangManager gioHangManager;
 
@@ -55,8 +55,6 @@ public class ChiTietSanPham_Activity extends AppCompatActivity {
 
         // Nhận dữ liệu từ Intent
         Intent intent = getIntent();
-
-
             // Nhận chi tiết sản phẩm nếu có
             chiTietSanPham = intent.getParcelableExtra("chitietsanpham");
 
@@ -85,13 +83,27 @@ public class ChiTietSanPham_Activity extends AppCompatActivity {
             boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
 
             if (!isLoggedIn) {
+                // Nếu chưa đăng nhập, chuyển đến trang đăng nhập
                 Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                 startActivity(loginIntent);
             } else {
-                gioHangManager.addItem(chiTietSanPham); // Gọi phương thức addItem
+                // Thêm sản phẩm vào giỏ hàng
+                gioHangManager.addItem(chiTietSanPham);
+
+                // Chuyển tới GioHangFragment sau khi thêm sản phẩm vào giỏ hàng
+                GioHangFragment gioHangFragment = new GioHangFragment();
+
+                // Chuyển trang qua FragmentTransaction
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, gioHangFragment) // 'fragment_container' là ID của container chứa các fragment
+                        .addToBackStack(null) // Để người dùng có thể quay lại
+                        .commit();
+
+                // Hiển thị thông báo thành công
                 Toast.makeText(ChiTietSanPham_Activity.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
             }
         });
+
         // Kiểm tra trạng thái đăng nhập và thêm sản phẩm vào giỏ hàng
         btndathang.setOnClickListener(view -> {
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -101,89 +113,17 @@ public class ChiTietSanPham_Activity extends AppCompatActivity {
                 Intent loginIntent = new Intent(getApplicationContext(), Login_Activity.class);
                 startActivity(loginIntent);
             } else {
-                gioHangManager.addItem(chiTietSanPham); // Gọi phương thức addItem
-                Intent intent1=new Intent(ChiTietSanPham_Activity.this, GioHangFragment.class);
-                startActivity(intent1);
+                // Thêm sản phẩm vào giỏ hàng
+                gioHangManager.addItem(chiTietSanPham);
+
+                // Chuyển đến DonHangUserFragment thay vì Activity
+                DonHangUserFragment donHangUserFragment = new DonHangUserFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, donHangUserFragment)
+                        .addToBackStack(null) // Cho phép quay lại
+                        .commit();
             }
         });
-        // Các nút điều hướng
-        setupNavigationButtons();
-    }
 
-    private void setupNavigationButtons() {
-        ImageButton btntrangchu = findViewById(R.id.btntrangchu);
-        ImageButton btntimkiem = findViewById(R.id.btntimkiem);
-        ImageButton btndonhang = findViewById(R.id.btndonhang);
-        ImageButton btngiohang = findViewById(R.id.btncart);
-        ImageButton btncanhan = findViewById(R.id.btncanhan);
-
-        btntrangchu.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), TrangchuNgdung_Activity.class);
-            startActivity(intent);
-        });
-btntimkiem.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent a=new Intent(ChiTietSanPham_Activity.this,TimKiemSanPham_Activity.class);
-        startActivity(a);
-    }
-});
-        btngiohang.setOnClickListener(view -> navigateToCart());
-        btndonhang.setOnClickListener(view -> navigateToOrder());
-        btncanhan.setOnClickListener(view -> navigateToProfile());
-    }
-
-    private void navigateToCart() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (!isLoggedIn) {
-            Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(getApplicationContext(), GioHangFragment.class);
-            startActivity(intent);
-        }
-    }
-
-    private void navigateToOrder() {
-        // Kiểm tra trạng thái đăng nhập của người dùng
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (isLoggedIn) {
-            // Đã đăng nhập, chuyển đến trang đơn hàng
-            Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
-
-            // Truyền tendn qua Intent
-            intent.putExtra("tendn", tendn);  // Thêm dòng này để truyền tendn
-
-            startActivity(intent);
-        } else {
-            // Chưa đăng nhập, chuyển đến trang login
-            Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
-            startActivity(intent);
-        }
-
-    }
-
-    private void navigateToProfile() {
-        // Kiểm tra trạng thái đăng nhập của người dùng
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (isLoggedIn) {
-            // Đã đăng nhập, chuyển đến trang đơn hàng
-            Intent intent = new Intent(getApplicationContext(), TrangCaNhan_nguoidung_Activity.class);
-
-            // Truyền tendn qua Intent
-            intent.putExtra("tendn", tendn);  // Thêm dòng này để truyền tendn
-
-            startActivity(intent);
-        } else {
-            // Chưa đăng nhập, chuyển đến trang login
-            Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
-            startActivity(intent);
-        }
     }
 }

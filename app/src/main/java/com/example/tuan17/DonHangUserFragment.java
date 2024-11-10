@@ -16,10 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.example.tuan17.Adapter.DonHang_Adapter;
 import com.example.tuan17.Db.Database;
 import com.example.tuan17.Model.Order;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
-import java.util.Objects;
 
 public class DonHangUserFragment extends Fragment {
     private Database database;
@@ -27,8 +25,7 @@ public class DonHangUserFragment extends Fragment {
     private DonHang_Adapter donHangAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.activity_don_hang_user, container, false);
 
@@ -38,6 +35,11 @@ public class DonHangUserFragment extends Fragment {
         // Lấy tendn từ SharedPreferences
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getContext().MODE_PRIVATE);
         String tendn = sharedPreferences.getString("tendn", null);
+
+        if (tendn == null || tendn.isEmpty()) {
+            Toast.makeText(getContext(), "Tên đăng nhập không hợp lệ!", Toast.LENGTH_SHORT).show();
+            return null; // Không tiếp tục nếu không có tên đăng nhập
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -58,56 +60,8 @@ public class DonHangUserFragment extends Fragment {
         // Tạo bảng nếu chưa tồn tại
         createTableIfNotExists();
 
-        // Lấy tên đăng nhập từ Intent
-        Bundle bundle = getArguments();
-        String tenDN = null; // Giá trị mặc định nếu không có đối tượng trong Bundle
-        if (bundle != null) {
-            tenDN = bundle.getString("tendn");
-        }
-
-        // Kiểm tra giá trị tenDN
-        if (tenDN == null || tenDN.isEmpty()) {
-            Toast.makeText(getContext(), "Tên đăng nhập không hợp lệ!", Toast.LENGTH_SHORT).show();
-            return null; // Không tiếp tục nếu không có tên đăng nhập
-        }
-
-        loadDonHang(tenDN); // Gọi phương thức loadDonHang với tenDN
-
-//        BottomNavigationView bottomNavigationView = rootView.findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            SharedPreferences sharedPrefs = getActivity().getSharedPreferences("MyPrefs", getContext().MODE_PRIVATE);
-//            switch (item.getItemId()) {
-//                case R.id.nav_home:
-//                    startActivity(new Intent(getContext(), TrangchuNgdung_Activity.class));
-//                    return true;
-//                case R.id.nav_search:
-//                    startActivity(new Intent(getContext(), TimKiemSanPham_Activity.class));
-//                    return true;
-//                case R.id.nav_cart:
-//                    boolean isLoggedIn = sharedPrefs.getBoolean("isLoggedIn", false);
-//                    if (!isLoggedIn) {
-//                        startActivity(new Intent(getContext(), Login_Activity.class));
-//                    } else {
-//                        startActivity(new Intent(getContext(), GioHang_Activity.class));
-//                    }
-//                    return true;
-//                case R.id.nav_order:
-//                    if (sharedPrefs.getBoolean("isLoggedIn", false)) {
-//                        Intent intent = new Intent(getContext(), DonHang_User_Activity.class);
-//                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-//                        startActivity(intent);
-//                    } else {
-//                        startActivity(new Intent(getContext(), Login_Activity.class));
-//                    }
-//                    return true;
-//                case R.id.nav_profile:
-//                    Intent profileIntent = new Intent(getContext(), TrangCaNhan_nguoidung_Activity.class);
-//                    profileIntent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-//                    startActivity(profileIntent);
-//                    return true;
-//            }
-//            return false;
-//        });
+        // Tải danh sách đơn hàng cho tên đăng nhập hiện tại
+        loadDonHang(tendn);
 
         return rootView;
     }

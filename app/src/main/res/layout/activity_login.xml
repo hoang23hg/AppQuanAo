@@ -8,10 +8,9 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#F2F2F2"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
 
-    <!-- Logo ImageView -->
-
+    <!-- Logo -->
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -21,6 +20,7 @@
         android:src="@drawable/logo_app_1"
         android:layout_marginTop="-40dp"/>
 
+    <!-- CardView for Login Form -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,6 +92,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Registration Information -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,4 +119,5 @@
 
         </TextView>
     </LinearLayout>
+
 </LinearLayout>

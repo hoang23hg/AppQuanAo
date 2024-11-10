@@ -17,11 +17,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tuan17.Adapter.GioHangAdapter;
 import com.example.tuan17.Db.Database;
 import com.example.tuan17.Model.GioHang;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -42,7 +43,6 @@ public class GioHangFragment extends Fragment {
         thanhtoan = rootView.findViewById(R.id.btnthanhtoan);
         listView = rootView.findViewById(R.id.listtk);
         TextView textTendn = rootView.findViewById(R.id.tendn);
-//        BottomNavigationView bottomNavigationView = rootView.findViewById(R.id.bottom_navigation);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getActivity().MODE_PRIVATE);
         String tendn = sharedPreferences.getString("tendn", null);
@@ -75,40 +75,6 @@ public class GioHangFragment extends Fragment {
         txtTongTien.setText(String.valueOf(gioHangManager.getTongTien()));
 
         thanhtoan.setOnClickListener(v -> showPaymentDialog());
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            switch (item.getItemId()) {
-//                case R.id.nav_home:
-//                    startActivity(new Intent(getActivity(), TrangchuNgdung_Activity.class));
-//                    return true;
-//                case R.id.nav_search:
-//                    startActivity(new Intent(getActivity(), TimKiemSanPham_Activity.class));
-//                    return true;
-//                case R.id.nav_cart:
-//                    boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-//                    if (!isLoggedIn) {
-//                        startActivity(new Intent(getActivity(), Login_Activity.class));
-//                    } else {
-//                        startActivity(new Intent(getActivity(), GioHang_Activity.class));
-//                    }
-//                    return true;
-//                case R.id.nav_order:
-//                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-//                        Intent intent = new Intent(getActivity(), DonHang_User_Activity.class);
-//                        intent.putExtra("tendn", tendn);
-//                        startActivity(intent);
-//                    } else {
-//                        startActivity(new Intent(getActivity(), Login_Activity.class));
-//                    }
-//                    return true;
-//                case R.id.nav_profile:
-//                    Intent intent = new Intent(getActivity(), TrangCaNhan_nguoidung_Activity.class);
-//                    intent.putExtra("tendn", tendn);
-//                    startActivity(intent);
-//                    return true;
-//            }
-//            return false;
-//        });
 
         return rootView;
     }
@@ -161,7 +127,12 @@ public class GioHangFragment extends Fragment {
                         txtTongTien.setText("0");
 
                         adapter.notifyDataSetChanged();
-                        startActivity(new Intent(getActivity(), TrangchuNgdung_Activity.class));
+
+                        // Sử dụng FragmentTransaction để chuyển về TrangchuNgdungFragment
+                        FragmentManager fragmentManager = getParentFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.fragment_container, new TrangchuNgdungFragment());
+                        transaction.commit();
                     } else {
                         Toast.makeText(getActivity(), "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
                     }

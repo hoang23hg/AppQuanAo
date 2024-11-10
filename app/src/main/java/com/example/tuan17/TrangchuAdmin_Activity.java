@@ -45,37 +45,37 @@ public class TrangchuAdmin_Activity extends AppCompatActivity {
         String tendn = sharedPreferences.getString("tendn", null);
 
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_homeadmin:
-                    startActivity(new Intent(getApplicationContext(), TrangchuAdmin_Activity.class));
-                    return true;
-
-                case R.id.nav_dm:
-                    startActivity(new Intent(getApplicationContext(), Nhomsanpham_admin_Actvity.class));
-                    return true;
-
-                case R.id.nav_sp:
-                    startActivity(new Intent(getApplicationContext(), Sanpham_admin_Activity.class));
-                    return true;
-                case R.id.nav_orderadmin:
-                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-                        Intent intent = new Intent(getApplicationContext(), DonHang_admin_Activity.class);
-                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-                        startActivity(intent);
-                    } else {
-                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
-                    }
-                    return true;
-
-                case R.id.nav_profileadmin:
-                    Intent intent = new Intent(getApplicationContext(), TrangCaNhan_admin_Activity.class);
-                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-                    startActivity(intent);
-                    return true;
-            }
-            return false;
-        });
+//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.nav_homeadmin:
+//                    startActivity(new Intent(getApplicationContext(), TrangchuAdmin_Activity.class));
+//                    return true;
+//
+//                case R.id.nav_dm:
+//                    startActivity(new Intent(getApplicationContext(), Nhomsanpham_admin_Actvity.class));
+//                    return true;
+//
+//                case R.id.nav_sp:
+//                    startActivity(new Intent(getApplicationContext(), Sanpham_admin_Activity.class));
+//                    return true;
+//                case R.id.nav_orderadmin:
+//                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+//                        Intent intent = new Intent(getApplicationContext(), DonHang_admin_Activity.class);
+//                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+//                        startActivity(intent);
+//                    } else {
+//                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+//                    }
+//                    return true;
+//
+//                case R.id.nav_profileadmin:
+//                    Intent intent = new Intent(getApplicationContext(), TrangCaNhan_admin_Activity.class);
+//                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+//                    startActivity(intent);
+//                    return true;
+//            }
+//            return false;
+//        });
         grv2=findViewById(R.id.grv2);
         grv1=findViewById(R.id.grv1);
         mangNSPgrv2= new ArrayList<>(); // Khởi tạo danh sách

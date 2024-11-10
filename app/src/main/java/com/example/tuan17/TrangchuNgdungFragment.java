@@ -1,5 +1,6 @@
 package com.example.tuan17;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tuan17.Adapter.NhomSanPhamAdapter;
 import com.example.tuan17.Adapter.SanPhamAdapter;
@@ -22,6 +24,7 @@ import com.example.tuan17.Model.NhomSanPham;
 import com.example.tuan17.Model.SanPham;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TrangchuNgdungFragment extends Fragment {
     GridView grv2;
@@ -74,9 +77,16 @@ public class TrangchuNgdungFragment extends Fragment {
         timkiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TimKiemSanPham_Activity.class);
-                intent.putExtra("tendn", tendn); // Sử dụng biến tendn đã được lấy từ SharedPreferences
-                startActivity(intent);
+                TimKiemSanPhamFragment fragment = new TimKiemSanPhamFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("tendn", tendn);  // Gửi tên đăng nhập
+                fragment.setArguments(bundle);  // Truyền dữ liệu vào fragment
+
+                // Thực hiện thay thế fragment hiện tại bằng TimKiemSanPhamFragment
+                @SuppressLint("UseRequireInsteadOfGet") FragmentTransaction transaction = Objects.requireNonNull(getFragmentManager()).beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);  // R.id.fragment_container là nơi chứa các fragment
+                transaction.addToBackStack(null);  // Nếu bạn muốn có thể quay lại
+                transaction.commit();
             }
         });
 
