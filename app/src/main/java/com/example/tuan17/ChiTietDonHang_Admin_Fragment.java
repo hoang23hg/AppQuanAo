@@ -2,12 +2,10 @@ package com.example.tuan17;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,41 +17,35 @@ import com.example.tuan17.Adapter.ChiTietDonHangAdapter;
 import com.example.tuan17.Db.Database;
 import com.example.tuan17.DbHelper.DatabaseHelper;
 import com.example.tuan17.Model.ChiTietDonHang;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class ChiTietDonHang_Admin_Fragment extends Fragment {
 
-    DatabaseHelper dbdata;
-    Database database;
-    ListView listViewChiTiet;
-    ChiTietDonHangAdapter chiTietAdapter;
+    private DatabaseHelper dbdata;
+    private Database database;
+    private ListView listViewChiTiet;
+    private ChiTietDonHangAdapter chiTietAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chi_tiet_don_hang__admin_, container, false);
 
-        // Khởi tạo cơ sở dữ liệu
         dbdata = new DatabaseHelper(getContext());
         database = new Database(getContext(), "banhang.db", null, 1);
-
         createTableIfNotExists();
 
-        // Khởi tạo ListView để hiển thị chi tiết đơn hàng
         listViewChiTiet = view.findViewById(R.id.listtk);
 
-        // Lấy ID đơn hàng từ Bundle
         Bundle args = getArguments();
         String donHangIdStr = args != null ? args.getString("donHangId") : null;
 
         if (donHangIdStr != null) {
             try {
                 int donHangId = Integer.parseInt(donHangIdStr);
-
-                // Lấy chi tiết đơn hàng từ database
                 List<ChiTietDonHang> chiTietList = dbdata.getChiTietByOrderId(donHangId);
-
                 if (chiTietList != null && !chiTietList.isEmpty()) {
                     chiTietAdapter = new ChiTietDonHangAdapter(getContext(), chiTietList);
                     listViewChiTiet.setAdapter(chiTietAdapter);
@@ -73,22 +65,46 @@ public class ChiTietDonHang_Admin_Fragment extends Fragment {
             }
         }
 
-        // Setup button listeners
-        setupButtons(view);
+        setupBottomNavigation(view);
 
         return view;
     }
 
-    private void setupButtons(View view) {
-        // Set up button listeners inside this method
-        ImageButton btntrangchu = view.findViewById(R.id.btntrangchu);
-        btntrangchu.setOnClickListener(v -> {
-            if (getContext() != null) {
-                startActivity(new Intent(getContext(), TrangchuAdmin_Activity.class));
+    private void setupBottomNavigation(View view) {
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_homeadmin:
+                    startActivity(new Intent(getContext(), TrangchuAdmin_Activity.class));
+                    return true;
+
+                case R.id.nav_dm:
+                    startActivity(new Intent(getContext(), Nhomsanpham_admin_Actvity.class));
+                    return true;
+
+                case R.id.nav_sp:
+                    startActivity(new Intent(getContext(), Sanpham_admin_Activity.class));
+                    return true;
+
+                case R.id.nav_orderadmin:
+                    if (requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                            .getBoolean("isLoggedIn", false)) {
+                        startActivity(new Intent(getContext(), DonHang_admin_Activity.class));
+                    } else {
+                        startActivity(new Intent(getContext(), Login_Activity.class));
+                    }
+                    return true;
+
+                case R.id.nav_profileadmin:
+                    Intent intent = new Intent(getContext(), TrangCaNhan_admin_Activity.class);
+                    intent.putExtra("tendn", requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                            .getString("tendn", null));
+                    startActivity(intent);
+                    return true;
             }
+            return false;
         });
-
-
     }
 
     private void createTableIfNotExists() {

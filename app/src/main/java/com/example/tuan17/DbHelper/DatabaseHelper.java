@@ -23,6 +23,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // Tạo bảng Dathang
+        db.execSQL("CREATE TABLE IF NOT EXISTS Dathang (" +
+                "id_dathang INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "tenkh TEXT, " +
+                "diachi TEXT, " +
+                "sdt TEXT, " +
+                "tongthanhtoan REAL);");
         // Tạo bảng Chitietdonhang
         db.execSQL("CREATE TABLE IF NOT EXISTS Chitietdonhang (" +
                 "id_chitiet INTEGER PRIMARY KEY AUTOINCREMENT, " +

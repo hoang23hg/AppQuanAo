@@ -169,8 +169,12 @@ public class GioHang_Activity extends AppCompatActivity {
                         txtTongTien.setText("0"); // Đặt tổng tiền về 0
 
                         adapter.notifyDataSetChanged(); // Cập nhật lại giao diện
+                        // Sau khi đặt hàng thành công, thay vì khởi tạo Intent về TrangchuNgdung_Activity, bạn có thể làm như sau:
                         Intent a = new Intent(GioHang_Activity.this, TrangchuNgdung_Activity.class);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(a);
+                        finish();  // Đảm bảo rằng GioHang_Activity bị hủy khi chuyển sang trang mới
+
                     } else {
                         Toast.makeText(this, "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
                     }

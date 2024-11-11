@@ -67,7 +67,7 @@ public class DonHangUserFragment extends Fragment {
     }
 
     private void createTableIfNotExists() {
-        // Tạo bảng đơn hàng nếu chưa tồn tại
+        // Tạo bảng Dathang nếu chưa tồn tại
         database.QueryData("CREATE TABLE IF NOT EXISTS Dathang (" +
                 "id_dathang INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "tenkh TEXT, " +
@@ -75,7 +75,18 @@ public class DonHangUserFragment extends Fragment {
                 "sdt TEXT, " +
                 "tongthanhtoan REAL, " +
                 "ngaydathang DATETIME DEFAULT CURRENT_TIMESTAMP);");
+
+        // Tạo bảng Chitietdonhang nếu chưa tồn tại
+        database.QueryData("CREATE TABLE IF NOT EXISTS Chitietdonhang (" +
+                "id_chitiet INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id_dathang INTEGER, " +
+                "masp INTEGER, " +
+                "soluong INTEGER, " +
+                "dongia REAL, " +
+                "anh TEXT, " +
+                "FOREIGN KEY(id_dathang) REFERENCES Dathang(id_dathang));");
     }
+
 
     private void loadDonHang(String tenKh) {
         // Kiểm tra tên khách hàng trước khi truy vấn

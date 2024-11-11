@@ -50,7 +50,7 @@ public class TrangchuNgdung_Activity extends AppCompatActivity {
         grv1 = findViewById(R.id.grv1);
 
 ////        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-////        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String tendn = sharedPreferences.getString("tendn", null);
 //
@@ -78,43 +78,43 @@ public class TrangchuNgdung_Activity extends AppCompatActivity {
             }
         });
 
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            switch (item.getItemId()) {
-//                case R.id.nav_home:
-//                    startActivity(new Intent(getApplicationContext(), TrangchuNgdung_Activity.class));
-//                    return true;
-//
-//                case R.id.nav_search:
-//                    startActivity(new Intent(getApplicationContext(), TimKiemSanPham_Activity.class));
-//                    return true;
-//
-//                case R.id.nav_cart:
-//                    boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-//                    if (!isLoggedIn) {
-//                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
-//                    } else {
-//                        startActivity(new Intent(getApplicationContext(), GioHang_Activity.class));
-//                    }
-//                    return true;
-//
-//                case R.id.nav_order:
-//                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-//                        Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
-//                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-//                        startActivity(intent);
-//                    } else {
-//                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
-//                    }
-//                    return true;
-//
-//                case R.id.nav_profile:
-//                    Intent intent = new Intent(getApplicationContext(), TrangCaNhan_nguoidung_Activity.class);
-//                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-//                    startActivity(intent);
-//                    return true;
-//            }
-//            return false;
-//        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    startActivity(new Intent(getApplicationContext(), TrangchuNgdung_Activity.class));
+                    return true;
+
+                case R.id.nav_search:
+                    startActivity(new Intent(getApplicationContext(), TimKiemSanPham_Activity.class));
+                    return true;
+
+                case R.id.nav_cart:
+                    boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+                    if (!isLoggedIn) {
+                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), GioHang_Activity.class));
+                    }
+                    return true;
+
+                case R.id.nav_order:
+                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+                        Intent intent = new Intent(getApplicationContext(), DonHang_User_Activity.class);
+                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                        startActivity(intent);
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+                    }
+                    return true;
+
+                case R.id.nav_profile:
+                    Intent intent = new Intent(getApplicationContext(), TrangCaNhan_nguoidung_Activity.class);
+                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                    startActivity(intent);
+                    return true;
+            }
+            return false;
+        });
 
 
         timkiem.setOnClickListener(new View.OnClickListener() {

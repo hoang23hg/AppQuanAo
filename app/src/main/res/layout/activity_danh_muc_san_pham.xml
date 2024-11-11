@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
-    android:name="android.permission.SYSTEM_ALERT_WINDOW" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:name="android.permission.SYSTEM_ALERT_WINDOW"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:id="@+id/bo"
         android:layout_width="match_parent"
@@ -47,136 +50,24 @@
         android:columnCount="4"
         android:stretchMode="columnWidth"
         android:verticalSpacing="5dp"
-
-    android:layout_marginBottom="50dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginRight="10dp"
-        android:layout_height="match_parent"></GridView>
+        android:layout_height="match_parent">
 
+    </GridView>
 
-
-    <!-- Toolbar ở cuối màn hình -->
-    <LinearLayout
-        android:id="@+id/bottomToolbar"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
-        android:padding="1dp">
+        app:menu="@menu/bottom_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_text_color"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp"
-            android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/btntrangchu"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/tc" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textColor="#000000"
-                android:text="Trang Chủ"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/btntimkiem"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/timkiem" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tìm kiếm"
-                android:textColor="#000000"
-                android:gravity="center" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/btncart"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/cart" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Giỏ Hàng"
-                android:textColor="#000000"
-                android:gravity="center" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginRight="10dp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/btndonhang"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/dh" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textColor="#000000"
-                android:text="Đơn Hàng"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/btncanhan"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:src="@drawable/nd" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:text="Cá Nhân"
-                android:gravity="center" />
-        </LinearLayout>
-    </LinearLayout>
 
 </RelativeLayout>

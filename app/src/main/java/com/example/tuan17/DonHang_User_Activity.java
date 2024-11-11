@@ -29,8 +29,6 @@ public class DonHang_User_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_don_hang_user);
-
-
         listView = findViewById(R.id.listViewChiTiet);
         database = new Database(this, "banhang.db", null, 1);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})

@@ -37,7 +37,6 @@ public class SanphamAdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sanpham_admin, container, false);
-
         initializeViews(view);
         setupDatabase();
         loadData();
@@ -47,41 +46,41 @@ public class SanphamAdminFragment extends Fragment {
             startActivity(intent);
         });
 
-//        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottom_navigation);
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getActivity().MODE_PRIVATE);
-//        String tendn = sharedPreferences.getString("tendn", null);
-//
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            switch (item.getItemId()) {
-//                case R.id.nav_homeadmin:
-//                    startActivity(new Intent(getActivity(), TrangchuAdminFragment.class));
-//                    return true;
-//
-//                case R.id.nav_dm:
-//                    startActivity(new Intent(getActivity(), NhomsanphamAdminFragment.class));
-//                    return true;
-//
-//                case R.id.nav_sp:
-//                    return true;
-//
-////                case R.id.nav_orderadmin:
-////                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-////                        Intent intent = new Intent(getActivity(), DonHang_admin_Activity.class);
-////                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-////                        startActivity(intent);
-////                    } else {
-////                        startActivity(new Intent(getActivity(), Login_Activity.class));
-////                    }
-////                    return true;
-////
-////                case R.id.nav_profileadmin:
-////                    Intent intent = new Intent(getActivity(), TrangCaNhan_admin_Activity.class);
-////                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
-////                    startActivity(intent);
-////                    return true;
-//            }
-//            return false;
-//        });
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottom_navigation);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getActivity().MODE_PRIVATE);
+        String tendn = sharedPreferences.getString("tendn", null);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_homeadmin:
+                    startActivity(new Intent(getActivity(), TrangchuAdminFragment.class));
+                    return true;
+
+                case R.id.nav_dm:
+                    startActivity(new Intent(getActivity(), NhomsanphamAdminFragment.class));
+                    return true;
+
+                case R.id.nav_sp:
+                    return true;
+
+                case R.id.nav_orderadmin:
+                    if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+                        Intent intent = new Intent(getActivity(), DonHang_admin_Activity.class);
+                        intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                        startActivity(intent);
+                    } else {
+                        startActivity(new Intent(getActivity(), Login_Activity.class));
+                    }
+                    return true;
+
+                case R.id.nav_profileadmin:
+                    Intent intent = new Intent(getActivity(), TrangCaNhan_admin_Activity.class);
+                    intent.putExtra("tendn", tendn);  // Truyền tendn qua Intent
+                    startActivity(intent);
+                    return true;
+            }
+            return false;
+        });
 
         return view;
     }
@@ -130,4 +129,5 @@ public class SanphamAdminFragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
+
 }
