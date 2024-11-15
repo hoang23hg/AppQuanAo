@@ -17,8 +17,7 @@
 git clone https://github.com/hoang23hg/AppHomNayMacGi.git
 
 ******** Cách chạy code lần đầu **************
-- Do trang chủ admin và user điều sử dụng "SELECT * from nhomsanpham order by random() limit 10" để lấy sản phẩm hiển thị 
-nên lần đầu chạy code mặc định sẽ vào trang chủ và sẽ gặp lỗi "SELECT * from nhomsanpham order by random() limit 10"
+* Do trang chủ admin và user điều sử dụng "SELECT * from nhomsanpham order by random() limit 10" để lấy sản phẩm hiển thị nên lần đầu chạy code mặc định sẽ vào trang chủ và sẽ gặp lỗi "SELECT * from nhomsanpham order by random() limit 10"
 1, hãy vào file AndroidManifest thay đổi thứ tự chạy ThemNhomSanPham_Activity trước để thêm danh mục và thêm sản phẩm
 2, sau khi thêm xong thay đổi lại thứ tự trong AndroidManifest để MainActivity chạy đầu tiên đăng ký tài khoản để chạy bình thường
 3, để thêm tài khoản admin có thể thêm ở trong code hoặc chạy App Inspection vào bảng taikhoan để thay đổi quyền 
